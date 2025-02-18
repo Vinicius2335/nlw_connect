@@ -1,0 +1,1 @@
+Este README fornece uma visão geral do projeto, instruções de configuração, exemplos de uso e informações sobre como contribuir. Você pode personalizar este esboço conforme necessário para atender às necessidades específicas do seu projeto.
