@@ -1,4 +1,4 @@
-package com.github.vinicius2335.connect.api.domain.event.dtos;
+package com.github.vinicius2335.connect.api.domain.event;
 
 public record CreateEventRequest(
         String name,

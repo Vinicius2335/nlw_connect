@@ -1,6 +1,5 @@
 package com.github.vinicius2335.connect.api.domain.event;
 
-import com.github.vinicius2335.connect.api.domain.event.dtos.CreateEventRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +16,7 @@ import java.time.LocalTime;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Integer eventId;
 
     @Column(nullable = false)

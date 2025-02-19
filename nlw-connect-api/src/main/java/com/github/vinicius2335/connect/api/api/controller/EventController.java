@@ -2,7 +2,7 @@ package com.github.vinicius2335.connect.api.api.controller;
 
 import com.github.vinicius2335.connect.api.domain.event.Event;
 import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
-import com.github.vinicius2335.connect.api.domain.event.dtos.CreateEventRequest;
+import com.github.vinicius2335.connect.api.domain.event.CreateEventRequest;
 import com.github.vinicius2335.connect.api.domain.event.services.CreateEventService;
 import com.github.vinicius2335.connect.api.domain.event.services.FindAllEventsService;
 import com.github.vinicius2335.connect.api.domain.event.services.FindEventByPrettyNameService;
@@ -40,3 +40,4 @@ public class EventController {
         return ResponseEntity.ok(findEventByPrettyNameService.execute(prettyName));
     }
 }
+
