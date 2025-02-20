@@ -6,7 +6,7 @@ import com.github.vinicius2335.connect.api.domain.event.services.FindEventByPret
 import com.github.vinicius2335.connect.api.domain.subscription.Subscription;
 import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionConflictException;
 import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionRepository;
-import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionResponse;
+import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionResponse;
 import com.github.vinicius2335.connect.api.domain.user.User;
 import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
 import com.github.vinicius2335.connect.api.domain.user.UserRepository;
