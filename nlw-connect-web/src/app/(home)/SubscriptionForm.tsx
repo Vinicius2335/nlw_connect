@@ -2,8 +2,10 @@
 
 import Button from "@/components/Button"
 import Input from "@/components/Input"
+import { createSubscription } from "@/http/api"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ArrowRight, Mail, User } from "lucide-react"
+import { useRouter, useSearchParams } from "next/navigation"
 import React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -18,6 +20,9 @@ const subscriptionSchema = z.object({
 type SubscriptionSchema = z.infer<typeof subscriptionSchema>
 
 function SubscriptionForm() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
   const {
     register,
     handleSubmit,
@@ -26,8 +31,35 @@ function SubscriptionForm() {
     resolver: zodResolver(subscriptionSchema)
   })
 
-  function onSubscribe(data: SubscriptionSchema) {
-    console.log(data)
+  async function onSubscribe({ email, name }: SubscriptionSchema) {
+    const prettyName = "codecraft-summit-2025"
+    const referrerParam = searchParams.get("referrer")
+    let response: number | undefined
+
+    console.log(referrerParam)
+
+    try {
+      if (!referrerParam) {
+        const { subscriberId } = await createSubscription(prettyName, { email, name })
+        response = subscriberId
+      } else {
+        const { subscriberId } = await createSubscription(
+          prettyName,
+          { email, name },
+          { referrer: Number(referrerParam) }
+        )
+        response = subscriberId
+      }
+
+      if (response === undefined) {
+        throw new Error("subscriberId não foi encontrado na resposta")
+      }
+    } catch (ex) {
+      console.error(ex)
+      alert("Error while try subscription user")
+    }
+
+    router.push(`/invite/${response}`)
   }
 
   return (
