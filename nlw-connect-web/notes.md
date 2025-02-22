@@ -27,8 +27,22 @@
 2. Subscription Event by Indication
   - POST: ``http://localhost:8080/subscription/{prettyName}/{userId}``
 
-3. Generate Ranking by PrettyName
+3. Get TOP 3 Indication Ranking by PrettyName
   - GET: ``http://localhost:8080/subscription/{prettyName}/ranking``
   
-4. Generate Ranking by UserId
-  - GET: ``http://localhost:8080/subscription/{prettyName}/ranking/{userId}`` 
+4. Get User Indications Count by UserId
+  - GET: ``http://localhost:8080/subscription/{prettyName}/ranking/{userId}``
+  
+
+##  Aula 03 -> 22:46
+
+## TO-DO
+
+1. Back
+  - [] add Swagger
+  - [] validate request
+  - [] contabilizar quantas pessoas acessaram o nosso link de convite e redirecionar para o
+  - [] Alterar os endpoints name "/subscriptions" e "/events"
+
+2. Front
+   - [] add Alerts

@@ -1,6 +1,6 @@
 package com.github.vinicius2335.connect.api.api.controller;
 
-
+import com.github.vinicius2335.connect.api.api.openapi.SubscriptionControllerOpenApi;
 import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
 import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionConflictException;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingByUser;
@@ -21,14 +21,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RequestMapping("/subscription")
+@RequestMapping("/subscriptions")
 @RestController
 @Log4j2
-public class SubscriptionController {
+public class SubscriptionController implements SubscriptionControllerOpenApi {
     private final CreateSubscriptionService createSubscriptionService;
     private final GenerateRankingByEventService generateRankingByEventService;
     private final GenerateRankingByUserService generateRankingByUserService;
 
+    /**
+     * Cria uma nova inscrição para um evento especificado pelo nome amigável.
+     *
+     * @param prettyName O nome amigável do evento para o qual a inscrição será criada.
+     * @param userId O ID do usuário que indicou a inscrição, opcional.
+     * @param request Os detalhes da inscrição do usuário, incluindo nome e e-mail.
+     * @return ResponseEntity contendo a resposta da inscrição criada.
+     * @throws EventNotFoundException Se o evento não for encontrado pelo nome amigável.
+     * @throws SubscriptionConflictException Se o usuário já estiver inscrito no evento.
+     * @throws UserNotFoundException Se o usuário indicado não for encontrado.
+     */
     @PostMapping({"/{prettyName}", "/{prettyName}/{userId}"})
     public ResponseEntity<SubscriptionResponse> createSubscription(
             @PathVariable String prettyName,
@@ -40,6 +51,13 @@ public class SubscriptionController {
                 .body(createSubscriptionService.execute(prettyName, request, userId));
     }
 
+    /**
+     * Gera o ranking dos três principais inscritos para um evento especificado pelo nome amigável.
+     *
+     * @param prettyName O nome amigável do evento para o qual o ranking será gerado.
+     * @return ResponseEntity contendo uma lista dos três principais itens de ranking de inscrição.
+     * @throws EventNotFoundException Se o evento não for encontrado pelo nome amigável.
+     */
     @GetMapping("/{prettyName}/ranking")
     public ResponseEntity<List<SubscriptionRankingItem>> generateRankingByEvent(
             @PathVariable String prettyName
@@ -47,6 +65,15 @@ public class SubscriptionController {
         return ResponseEntity.ok(generateRankingByEventService.execute(prettyName).subList(0, 3));
     }
 
+    /**
+     * Gera o ranking de um usuário específico para um evento especificado pelo nome amigável.
+     *
+     * @param prettyName O nome amigável do evento para o qual o ranking será gerado.
+     * @param userId O ID do usuário para o qual o ranking será gerado.
+     * @return ResponseEntity contendo o ranking do usuário especificado.
+     * @throws UserNotFoundException Se o usuário não for encontrado pelo ID fornecido.
+     * @throws EventNotFoundException Se o evento não for encontrado pelo nome amigável.
+     */
     @GetMapping("/{prettyName}/ranking/{userId}")
     public ResponseEntity<SubscriptionRankingByUser> generateRankingByUser(
             @PathVariable String prettyName,
