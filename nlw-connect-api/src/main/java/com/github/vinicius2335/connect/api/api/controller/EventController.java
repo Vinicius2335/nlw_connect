@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/events")
 @RestController
 public class EventController implements EventControllerOpenApi {

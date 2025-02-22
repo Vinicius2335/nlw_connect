@@ -39,7 +39,7 @@ public interface SubscriptionControllerOpenApi {
     })
     ResponseEntity<SubscriptionResponse> createSubscription(
             @Parameter(description = "The friendly name of the event for which the registration will be created.", required = true) String prettyName,
-            @Parameter(description = "The user ID that indicated the indicator, optional.") Integer userId,
+            @Parameter(description = "Optional user ID that indicated the registration", required = false) Integer referrer,
             @RequestBody(description = "User registration details, including name and email.", required = true) UserSubscriptionRequest request
     ) throws EventNotFoundException, SubscriptionConflictException, UserNotFoundException;
 

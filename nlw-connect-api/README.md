@@ -57,9 +57,8 @@ This project is a RESTful API for managing subscriptions in events. The API is b
 - GET /events/{prettyName}
   - Retrieve an event by its pretty name.
 
-
 ### Create Subscription
-- POST /subscriptions/{prettyName} or /subscriptions/{prettyName}/{userId}
+- POST /subscriptions/{prettyName} or /subscriptions/{prettyName}?referrer={userIndicatorId}
     - Creates a new subscription for a specified event.
 
 ### Generate Event Ranking

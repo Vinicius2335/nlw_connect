@@ -44,9 +44,14 @@ public class CreateSubscriptionService {
         validateIfHaveIndication(userId, subscription);
 
         Subscription subscriptionSaved = subscriptionRepository.save(subscription);
-        String destination = "http://codecraft.com/subscription/" + subscriptionSaved.getEvent().getPrettyName()
-                + "/" + subscriptionSaved.getSubscribe().getUserId();
-        return new SubscriptionResponse(subscriptionSaved.getSubscriptionNumber(), destination);
+        String destination = "http://localhost:3000/" + subscriptionSaved.getEvent().getPrettyName()
+                + "?referrer=" + subscriptionSaved.getSubscribe().getUserId();
+
+        return new SubscriptionResponse(
+                subscriptionSaved.getSubscriptionNumber(),
+                subscriptionSaved.getSubscribe().getUserId(),
+                destination
+        );
     }
 
     private User getSubscribeOrSave(UserSubscriptionRequest request) {
@@ -57,7 +62,8 @@ public class CreateSubscriptionService {
                 });
     }
 
-    private void validateIfSubscriveAlreadyRegistered(User subscribe, Event event) throws SubscriptionConflictException {
+    private void validateIfSubscriveAlreadyRegistered(User subscribe, Event event)
+            throws SubscriptionConflictException {
         boolean subscribeAlreadyRegistered = subscriptionRepository.findBySubscribeUserIdAndEventEventId(subscribe.getUserId(), event.getEventId())
                 .isPresent();
 
@@ -66,7 +72,8 @@ public class CreateSubscriptionService {
         }
     }
 
-    private void validateIfHaveIndication(Integer userId, Subscription subscription) throws UserNotFoundException {
+    private void validateIfHaveIndication(Integer userId, Subscription subscription)
+            throws UserNotFoundException {
         if(userId != null){
             User indication = userRepository.findById(userId)
                     .orElseThrow(() -> new UserNotFoundException("User not found by id: " + userId));
