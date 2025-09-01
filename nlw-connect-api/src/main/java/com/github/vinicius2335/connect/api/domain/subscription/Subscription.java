@@ -18,17 +18,20 @@ public class Subscription {
     @EqualsAndHashCode.Include
     private Integer subscriptionNumber;
 
-    // 1 usuário pode se inscrever em * eventos diferentes
+    // 1 usuário(one) pode realizar * inscriçoes(many)
+    // 1 inscrição pertence a um único usuário
     @ManyToOne(optional = false)
     @JoinColumn(name = "subscribed_user_id", nullable = false)
     private User subscribe;
 
-    // 1 usuário pode indicar 0 ou * usuários
+    // 1 usuário pode realizar 0 ou * indicaçoes
+    // 1 inscrição pode ter 0 ou 1 indicação
     @ManyToOne
     @JoinColumn(name = "indication_user_id")
     private User indication;
 
-    // 1 evento possui * usuários inscritos
+    // 1 evento pode ter * inscritos
+    // cada inscrição pertence a 1 único evento
     @ManyToOne(optional = false)
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
