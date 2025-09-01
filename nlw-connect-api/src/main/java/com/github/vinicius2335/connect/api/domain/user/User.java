@@ -17,7 +17,6 @@ public class User {
     @EqualsAndHashCode.Include
     private Integer userId;
 
-    // NOTE: get retorna name ou user_name ?
     @Column(name = "user_name", nullable = false)
     private String name;
 
