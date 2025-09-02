@@ -2,7 +2,7 @@ package com.github.vinicius2335.connect.api.api.openapi;
 
 import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
 import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionConflictException;
-import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingByUser;
+import com.github.vinicius2335.connect.api.domain.subscription.dtos.UserSubscriptionRanking;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingItem;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionResponse;
 import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
@@ -68,12 +68,12 @@ public interface SubscriptionControllerOpenApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User ranking generated",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = SubscriptionRankingByUser.class))),
+                            schema = @Schema(implementation = UserSubscriptionRanking.class))),
             @ApiResponse(responseCode = "404", description = "Event or User not found",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ProblemDetail.class)))
     })
-    ResponseEntity<SubscriptionRankingByUser> generateRankingByUser(
+    ResponseEntity<UserSubscriptionRanking> generateRankingByUser(
             @Parameter(description = "The friendly name of the event for which the ranking will be generated.", required = true) String prettyName,
             @Parameter(description = "The user ID for which the ranking will be generated.", required = true) Integer userId
     ) throws UserNotFoundException, EventNotFoundException;

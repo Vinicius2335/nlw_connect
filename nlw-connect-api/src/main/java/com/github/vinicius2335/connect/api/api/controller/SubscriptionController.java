@@ -3,7 +3,7 @@ package com.github.vinicius2335.connect.api.api.controller;
 import com.github.vinicius2335.connect.api.api.openapi.SubscriptionControllerOpenApi;
 import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
 import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionConflictException;
-import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingByUser;
+import com.github.vinicius2335.connect.api.domain.subscription.dtos.UserSubscriptionRanking;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingItem;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionResponse;
 import com.github.vinicius2335.connect.api.domain.subscription.services.CreateSubscriptionService;
@@ -79,7 +79,7 @@ public class SubscriptionController implements SubscriptionControllerOpenApi {
      * @throws EventNotFoundException Se o evento não for encontrado pelo nome amigável.
      */
     @GetMapping("/{prettyName}/ranking/{userId}")
-    public ResponseEntity<SubscriptionRankingByUser> generateRankingByUser(
+    public ResponseEntity<UserSubscriptionRanking> generateRankingByUser(
             @PathVariable String prettyName,
             @PathVariable Integer userId
     ) throws UserNotFoundException, EventNotFoundException {

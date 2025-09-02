@@ -26,22 +26,22 @@ public class CreateSubscriptionService {
     public SubscriptionResponse execute(
             String eventPrettyName,
             UserSubscriptionRequest request,
-            Integer userId
+            Integer indicatorId
     ) throws EventNotFoundException, SubscriptionConflictException, UserNotFoundException {
         Event event = findEventByPrettyNameService.execute(eventPrettyName);
 
         // se o usuáro não esteja cadastrado, save o usuário
-        User subscribe = getSubscribeOrSave(request);
+        User subscriber = getSubscriberOrSave(request);
 
         // se o user já esta escrito no evento laça um conflict
-        validateIfSubscriveAlreadyRegistered(subscribe, event);
+        validateIfSubscriveAlreadyRegistered(subscriber, event);
 
         // cria o subscription e depois salva se não houver nenhuma exception
         Subscription subscription = new Subscription();
         subscription.setEvent(event);
-        subscription.setSubscribe(subscribe);
+        subscription.setSubscribe(subscriber);
 
-        validateIfHaveIndication(userId, subscription);
+        validateIfHaveIndication(indicatorId, subscription);
 
         Subscription subscriptionSaved = subscriptionRepository.save(subscription);
         String destination = "http://localhost:3000/" + subscriptionSaved.getEvent().getPrettyName()
@@ -54,7 +54,7 @@ public class CreateSubscriptionService {
         );
     }
 
-    private User getSubscribeOrSave(UserSubscriptionRequest request) {
+    private User getSubscriberOrSave(UserSubscriptionRequest request) {
         return userRepository.findByEmail(request.email())
                 .orElseGet(() -> {
                     User newUser = new User(request);
@@ -64,17 +64,19 @@ public class CreateSubscriptionService {
 
     private void validateIfSubscriveAlreadyRegistered(User subscribe, Event event)
             throws SubscriptionConflictException {
-        boolean subscribeAlreadyRegistered = subscriptionRepository.findBySubscribeUserIdAndEventEventId(subscribe.getUserId(), event.getEventId())
+        boolean subscribeAlreadyRegistered = subscriptionRepository.findBySubscribeUserIdAndEventEventId(
+                        subscribe.getUserId(), event.getEventId()
+                )
                 .isPresent();
 
-        if (subscribeAlreadyRegistered){
+        if (subscribeAlreadyRegistered) {
             throw new SubscriptionConflictException("User " + subscribe.getName() + " is already registered for the event " + event.getTitle());
         }
     }
 
     private void validateIfHaveIndication(Integer userId, Subscription subscription)
             throws UserNotFoundException {
-        if(userId != null){
+        if (userId != null) {
             User indication = userRepository.findById(userId)
                     .orElseThrow(() -> new UserNotFoundException("User not found by id: " + userId));
             subscription.setIndication(indication);

@@ -1,9 +1,7 @@
 package com.github.vinicius2335.connect.api.domain.subscription.services;
 
-import com.github.vinicius2335.connect.api.domain.event.Event;
 import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
-import com.github.vinicius2335.connect.api.domain.event.services.FindEventByPrettyNameService;
-import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingByUser;
+import com.github.vinicius2335.connect.api.domain.subscription.dtos.UserSubscriptionRanking;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingItem;
 import com.github.vinicius2335.connect.api.domain.user.User;
 import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
@@ -19,7 +17,7 @@ public class GenerateRankingByUserService {
     private final UserRepository userRepository;
     private final GenerateRankingByEventService generateRankingByEventService;
 
-    public SubscriptionRankingByUser execute(
+    public UserSubscriptionRanking execute(
             String prettyName,
             Integer userId
     ) throws EventNotFoundException, UserNotFoundException {
@@ -35,6 +33,6 @@ public class GenerateRankingByUserService {
 
         int position = rankingItems.indexOf(item) + 1;
 
-        return new SubscriptionRankingByUser(item, position);
+        return new UserSubscriptionRanking(item, position);
     }
 }
