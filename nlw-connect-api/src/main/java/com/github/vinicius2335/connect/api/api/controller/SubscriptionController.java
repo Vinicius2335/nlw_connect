@@ -1,16 +1,16 @@
 package com.github.vinicius2335.connect.api.api.controller;
 
 import com.github.vinicius2335.connect.api.api.openapi.SubscriptionControllerOpenApi;
-import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
-import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionConflictException;
+import com.github.vinicius2335.connect.api.domain.event.exceptions.EventNotFoundException;
+import com.github.vinicius2335.connect.api.domain.subscription.exceptions.SubscriptionConflictException;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.UserSubscriptionRanking;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingItem;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionResponse;
 import com.github.vinicius2335.connect.api.domain.subscription.services.CreateSubscriptionService;
 import com.github.vinicius2335.connect.api.domain.subscription.services.GenerateRankingByEventService;
 import com.github.vinicius2335.connect.api.domain.subscription.services.GenerateRankingByUserService;
-import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
-import com.github.vinicius2335.connect.api.domain.user.UserSubscriptionRequest;
+import com.github.vinicius2335.connect.api.domain.user.exceptions.UserNotFoundException;
+import com.github.vinicius2335.connect.api.domain.user.requests.UserSubscriptionRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

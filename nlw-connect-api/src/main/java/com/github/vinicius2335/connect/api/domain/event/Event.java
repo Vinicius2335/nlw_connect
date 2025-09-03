@@ -1,5 +1,6 @@
 package com.github.vinicius2335.connect.api.domain.event;
 
+import com.github.vinicius2335.connect.api.domain.event.requests.CreateEventRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

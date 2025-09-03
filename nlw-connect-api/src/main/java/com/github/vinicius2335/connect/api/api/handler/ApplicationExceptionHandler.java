@@ -1,8 +1,8 @@
 package com.github.vinicius2335.connect.api.api.handler;
 
-import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
-import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionConflictException;
-import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
+import com.github.vinicius2335.connect.api.domain.event.exceptions.EventNotFoundException;
+import com.github.vinicius2335.connect.api.domain.subscription.exceptions.SubscriptionConflictException;
+import com.github.vinicius2335.connect.api.domain.user.exceptions.UserNotFoundException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.*;
 import org.springframework.lang.NonNull;

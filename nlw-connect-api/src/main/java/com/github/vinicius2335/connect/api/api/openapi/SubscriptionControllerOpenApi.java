@@ -1,12 +1,12 @@
 package com.github.vinicius2335.connect.api.api.openapi;
 
-import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
-import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionConflictException;
+import com.github.vinicius2335.connect.api.domain.event.exceptions.EventNotFoundException;
+import com.github.vinicius2335.connect.api.domain.subscription.exceptions.SubscriptionConflictException;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.UserSubscriptionRanking;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingItem;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionResponse;
-import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
-import com.github.vinicius2335.connect.api.domain.user.UserSubscriptionRequest;
+import com.github.vinicius2335.connect.api.domain.user.exceptions.UserNotFoundException;
+import com.github.vinicius2335.connect.api.domain.user.requests.UserSubscriptionRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

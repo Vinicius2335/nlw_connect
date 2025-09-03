@@ -1,7 +1,7 @@
 package com.github.vinicius2335.connect.api.domain.event.services;
 
 import com.github.vinicius2335.connect.api.domain.event.Event;
-import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
+import com.github.vinicius2335.connect.api.domain.event.exceptions.EventNotFoundException;
 import com.github.vinicius2335.connect.api.domain.event.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

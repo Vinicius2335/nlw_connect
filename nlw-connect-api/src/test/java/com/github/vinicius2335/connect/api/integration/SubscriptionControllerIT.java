@@ -2,7 +2,7 @@ package com.github.vinicius2335.connect.api.integration;
 
 import com.github.vinicius2335.connect.api.domain.event.Event;
 import com.github.vinicius2335.connect.api.domain.user.User;
-import com.github.vinicius2335.connect.api.domain.user.UserSubscriptionRequest;
+import com.github.vinicius2335.connect.api.domain.user.requests.UserSubscriptionRequest;
 import com.github.vinicius2335.connect.api.utils.creator.UserCreator;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

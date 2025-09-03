@@ -1,7 +1,7 @@
 package com.github.vinicius2335.connect.api.domain.subscription.services;
 
 import com.github.vinicius2335.connect.api.domain.event.Event;
-import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
+import com.github.vinicius2335.connect.api.domain.event.exceptions.EventNotFoundException;
 import com.github.vinicius2335.connect.api.domain.event.services.FindEventByPrettyNameService;
 import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionRepository;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingItem;

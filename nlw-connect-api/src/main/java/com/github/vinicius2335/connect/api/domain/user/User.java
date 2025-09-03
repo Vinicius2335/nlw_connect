@@ -1,5 +1,6 @@
 package com.github.vinicius2335.connect.api.domain.user;
 
+import com.github.vinicius2335.connect.api.domain.user.requests.UserSubscriptionRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

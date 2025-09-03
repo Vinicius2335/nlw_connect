@@ -1,8 +1,8 @@
 package com.github.vinicius2335.connect.api.api.openapi;
 
-import com.github.vinicius2335.connect.api.domain.event.CreateEventRequest;
+import com.github.vinicius2335.connect.api.domain.event.requests.CreateEventRequest;
 import com.github.vinicius2335.connect.api.domain.event.Event;
-import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
+import com.github.vinicius2335.connect.api.domain.event.exceptions.EventNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

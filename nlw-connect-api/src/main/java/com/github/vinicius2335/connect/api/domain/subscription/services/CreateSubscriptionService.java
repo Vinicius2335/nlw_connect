@@ -1,16 +1,16 @@
 package com.github.vinicius2335.connect.api.domain.subscription.services;
 
 import com.github.vinicius2335.connect.api.domain.event.Event;
-import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
+import com.github.vinicius2335.connect.api.domain.event.exceptions.EventNotFoundException;
 import com.github.vinicius2335.connect.api.domain.event.services.FindEventByPrettyNameService;
 import com.github.vinicius2335.connect.api.domain.subscription.Subscription;
-import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionConflictException;
+import com.github.vinicius2335.connect.api.domain.subscription.exceptions.SubscriptionConflictException;
 import com.github.vinicius2335.connect.api.domain.subscription.SubscriptionRepository;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionResponse;
 import com.github.vinicius2335.connect.api.domain.user.User;
-import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
+import com.github.vinicius2335.connect.api.domain.user.exceptions.UserNotFoundException;
 import com.github.vinicius2335.connect.api.domain.user.UserRepository;
-import com.github.vinicius2335.connect.api.domain.user.UserSubscriptionRequest;
+import com.github.vinicius2335.connect.api.domain.user.requests.UserSubscriptionRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

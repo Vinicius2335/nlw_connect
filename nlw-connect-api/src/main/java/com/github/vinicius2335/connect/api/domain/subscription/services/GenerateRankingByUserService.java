@@ -1,10 +1,10 @@
 package com.github.vinicius2335.connect.api.domain.subscription.services;
 
-import com.github.vinicius2335.connect.api.domain.event.EventNotFoundException;
+import com.github.vinicius2335.connect.api.domain.event.exceptions.EventNotFoundException;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.UserSubscriptionRanking;
 import com.github.vinicius2335.connect.api.domain.subscription.dtos.SubscriptionRankingItem;
 import com.github.vinicius2335.connect.api.domain.user.User;
-import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
+import com.github.vinicius2335.connect.api.domain.user.exceptions.UserNotFoundException;
 import com.github.vinicius2335.connect.api.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
