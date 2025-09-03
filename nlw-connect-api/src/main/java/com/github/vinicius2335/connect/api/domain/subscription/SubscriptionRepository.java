@@ -24,6 +24,7 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Inte
             WHERE indication_user_id IS NOT NULL AND event_id = :eventId
             GROUP BY indication_user_id
             ORDER BY subscribers DESC
+            LIMIT 3
             """,
             nativeQuery = true
     )

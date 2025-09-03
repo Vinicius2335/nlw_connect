@@ -79,18 +79,4 @@ public interface SubscriptionControllerOpenApi {
     ) throws UserNotFoundException, EventNotFoundException;
 
 
-
-    @Operation(
-            summary = "Create multiple subscriptions",
-            description = "Creates multiple subscriptions for testing purposes.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Subscriptions created",
-                    content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = SubscriptionResponse.class)))
-    })
-    ResponseEntity<List<SubscriptionResponse>> createMultipleSubscriptions(
-            @Parameter(description = "The friendly name of the event for which the ranking will be generated.", required = true) String prettyName,
-            @Parameter(description = "The user ID that indicated event", required = true) Integer userId,
-            @RequestBody List<UserSubscriptionRequest> requests
-    );
 }

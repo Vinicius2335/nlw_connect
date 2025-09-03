@@ -11,6 +11,7 @@ import com.github.vinicius2335.connect.api.domain.subscription.services.Generate
 import com.github.vinicius2335.connect.api.domain.subscription.services.GenerateRankingByUserService;
 import com.github.vinicius2335.connect.api.domain.user.UserNotFoundException;
 import com.github.vinicius2335.connect.api.domain.user.UserSubscriptionRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -46,7 +47,7 @@ public class SubscriptionController implements SubscriptionControllerOpenApi {
     public ResponseEntity<SubscriptionResponse> createSubscription(
             @PathVariable String prettyName,
             @RequestParam(required = false) Integer referrer,
-            @RequestBody UserSubscriptionRequest request
+            @Valid @RequestBody UserSubscriptionRequest request
     ) throws EventNotFoundException, SubscriptionConflictException, UserNotFoundException {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -65,7 +66,7 @@ public class SubscriptionController implements SubscriptionControllerOpenApi {
     public ResponseEntity<List<SubscriptionRankingItem>> generateRankingByEvent(
             @PathVariable String prettyName
     ) throws EventNotFoundException {
-        return ResponseEntity.ok(generateRankingByEventService.execute(prettyName).subList(0, 3));
+        return ResponseEntity.ok(generateRankingByEventService.execute(prettyName));
     }
 
 
