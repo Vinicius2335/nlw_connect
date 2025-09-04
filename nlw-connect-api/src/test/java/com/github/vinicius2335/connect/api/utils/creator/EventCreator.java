@@ -1,10 +1,11 @@
 package com.github.vinicius2335.connect.api.utils.creator;
 
 import com.github.vinicius2335.connect.api.domain.event.Event;
+import com.github.vinicius2335.connect.api.domain.event.requests.CreateEventRequest;
 import lombok.experimental.UtilityClass;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
+import java.util.concurrent.TimeUnit;
 
 import static com.github.vinicius2335.connect.api.utils.FakerUtils.FAKER;
 
@@ -27,4 +28,39 @@ public class EventCreator {
                 .endTime(LocalTime.of(21, 0))
                 .build();
     }
+
+    public CreateEventRequest mockCreateEventRequest(){
+        LocalDateTime start = LocalDateTime.now();
+        LocalDateTime end = start.plusDays(14);
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        Instant startDateTimeInstant = FAKER.timeAndDate().between(
+                start.atZone(zoneId).toInstant(),
+                end.atZone(zoneId).toInstant()
+        );
+
+        LocalDate startDate = startDateTimeInstant.atZone(zoneId).toLocalDate();
+        LocalTime startTime = startDateTimeInstant.atZone(zoneId).toLocalTime();
+
+        Instant endDateTimeInstant = FAKER.timeAndDate().between(
+                startDateTimeInstant,
+                end.atZone(zoneId).toInstant()
+        );
+
+        LocalDate endDate = endDateTimeInstant.atZone(zoneId).toLocalDate();
+        LocalTime endTime = endDateTimeInstant.atZone(zoneId).toLocalTime();
+
+
+        return new CreateEventRequest(
+                "Event in " + FAKER.company().name(),
+                FAKER.address().streetAddress(),
+                FAKER.number().randomDouble(2, 10, 1000),
+                startDate.toString(),
+                endDate.toString(),
+                startTime.toString(),
+                endTime.toString()
+        );
+    }
+
+
 }
