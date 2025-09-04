@@ -55,4 +55,12 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
         problemDetail.setDetail(ex.getMessage());
         return problemDetail;
     }
+
+    @ExceptionHandler({BusinessException.class})
+    public ProblemDetail handleBadRequest(Exception ex){
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problemDetail.setTitle("Bad Request");
+        problemDetail.setDetail(ex.getMessage());
+        return problemDetail;
+    }
 }

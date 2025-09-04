@@ -7,6 +7,7 @@ import com.github.vinicius2335.connect.api.domain.event.requests.CreateEventRequ
 import com.github.vinicius2335.connect.api.domain.event.services.CreateEventService;
 import com.github.vinicius2335.connect.api.domain.event.services.FindAllEventsService;
 import com.github.vinicius2335.connect.api.domain.event.services.FindEventByPrettyNameService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class EventController implements EventControllerOpenApi {
      * @return ResponseEntity contendo o evento criado e o status HTTP 201 (Created).
      */
     @PostMapping
-    public ResponseEntity<Event> createNewEvent(@RequestBody CreateEventRequest request){
+    public ResponseEntity<Event> createNewEvent(@RequestBody @Valid CreateEventRequest request){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(createEventService.execute(request));

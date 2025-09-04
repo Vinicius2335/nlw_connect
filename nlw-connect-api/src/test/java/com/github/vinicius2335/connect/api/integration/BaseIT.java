@@ -52,6 +52,7 @@ public abstract class BaseIT {
 
     protected final String messageInvalidFields = "One or more fields are invalid";
     protected final String messageEntityNotFound = "Entity not found";
+    protected final String messageBadRequest = "Bad Request";
 
     // config Rest Assured
     protected void configRestAssured(String basePath){

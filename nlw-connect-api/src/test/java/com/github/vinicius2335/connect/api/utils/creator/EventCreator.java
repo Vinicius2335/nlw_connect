@@ -62,5 +62,29 @@ public class EventCreator {
         );
     }
 
+    public CreateEventRequest mockInvalidCreateEventRequest(){
+        return new CreateEventRequest(
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
+    public CreateEventRequest mockInvalidDateAndTimeCreateEventRequest(){
+        return new CreateEventRequest(
+                "Event in " + FAKER.company().name(),
+                FAKER.address().streetAddress(),
+                FAKER.number().randomDouble(2, 10, 1000),
+                "abcdefg",
+                "abcdefg",
+                "abcdefg",
+                "abcdefg"
+        );
+    }
+
 
 }

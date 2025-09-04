@@ -1,11 +1,13 @@
 package com.github.vinicius2335.connect.api.domain.event;
 
+import com.github.vinicius2335.connect.api.api.handler.BusinessException;
 import com.github.vinicius2335.connect.api.domain.event.requests.CreateEventRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
@@ -38,13 +40,18 @@ public class Event {
     private LocalTime endTime;
 
     public Event(CreateEventRequest request) {
-        this.title = request.name();
-        this.prettyName = request.name().toLowerCase().replaceAll(" ", "-");
-        this.location = request.location();
-        this.price = request.price();
-        this.startDate = LocalDate.parse(request.startDate());
-        this.endDate = LocalDate.parse(request.endDate());
-        this.startTime = LocalTime.parse(request.startTime());
-        this.endTime = LocalTime.parse(request.endTime());
+        try {
+            this.title = request.name();
+            this.prettyName = request.name().toLowerCase().replaceAll(" ", "-");
+            this.location = request.location();
+            this.price = request.price();
+            this.startDate = LocalDate.parse(request.startDate());
+            this.endDate = LocalDate.parse(request.endDate());
+            this.startTime = LocalTime.parse(request.startTime());
+            this.endTime = LocalTime.parse(request.endTime());
+
+        } catch (DateTimeParseException ex){
+            throw new BusinessException("Invalid date or time format");
+        }
     }
 }
